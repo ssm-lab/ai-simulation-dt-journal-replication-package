@@ -3,6 +3,7 @@ import numpy as np
 import pandas as pd
 import random
 import os
+from string import Template
 
 inputFolder = './data'
 outputFolder = './output'
@@ -30,13 +31,14 @@ class Analysis():
         print(years)
         
         #ax = years.plot(kind='bar', stacked = True, rot=0)
-        ax = years.plot(kind='bar', x="year", rot=0)
+        ax = years.plot(kind='bar', x="year", rot=0, color='#34cbed')
         
         ax.set_ylabel('Papers', fontsize=15)
         ax.set_xlabel('Years', fontsize=15)
         ax.bar_label(ax.containers[0], fontsize=12)
         ax.spines['top'].set_visible(False)
         ax.spines['right'].set_visible(False)
+        ax.get_legend().remove()
         
         figure = plt.gcf()
         figure.set_size_inches(10, 5)
@@ -90,5 +92,5 @@ if __name__ == '__main__':
     #    os.mkdir(resultsPath)
     
     analysis = Analysis()
-    #analysis.papersPerYear()
-    analysis.venuesAndPublishers()
+    analysis.papersPerYear()
+    #analysis.venuesAndPublishers()
