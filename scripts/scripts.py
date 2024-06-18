@@ -1,13 +1,8 @@
 import matplotlib.pyplot as plt
 import numpy as np
-import geopandas as gpd
 import pandas as pd
-import ast
-import re
 import random
 import os
-from string import Template
-from wordcloud import WordCloud, STOPWORDS, ImageColorGenerator
 
 inputFolder = './data'
 outputFolder = './output'
