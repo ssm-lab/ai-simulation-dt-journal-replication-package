@@ -10,4 +10,5 @@
 
 ## How to use
 
+- Install requirements by executing `pip install -r requirements.txt` from the root folder.
 - Run analysis by executing `python scripts/scripts.py` from the root folder.
