@@ -65,7 +65,7 @@ def chartData(data, settings):
             #Counter object containing a dictionary of labels and frequencies
             counter = Counter([str(val).strip() for sublist in data[category].dropna().astype(str).str.split(',').tolist() for val in sublist])
             
-            print(counter)
+            #print(counter)
             
             """
             Threshold management. Elements with a frequency below the threshold are placed into the 'Others' bin.
