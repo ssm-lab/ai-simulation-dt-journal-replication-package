@@ -106,6 +106,8 @@ def chartData(data, settings):
         for i, category in enumerate(plotData):
             counter = plotData[category]
             
+            print(counter)
+            
             values = [element[1] for element in counter]
             sumFrequencies = sum(values)
             labels = ['{} \u2014 {} ({}%)'.format(element[0], element[1], round((element[1]/sumFrequencies)*100)) for element in counter]
