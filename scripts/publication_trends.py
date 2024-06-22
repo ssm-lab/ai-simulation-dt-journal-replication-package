@@ -116,7 +116,7 @@ def chartData(data, settings):
             #Prepare bar chart
             indexes = np.arange(len(labels))
             width = 0.75
-            axs[i].set_xlim([0, sum(values)*0.8])   #scales bars to 100% within one subplot
+            axs[i].set_xlim([0, sum(values)])   #scales bars to 100% within one subplot
             
             #Create vertical bar chart
             plt.sca(axs[i])

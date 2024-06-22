@@ -13,7 +13,11 @@ inputFolder = './data'
 outputFolder = './output'
 data = pd.read_excel(f'{inputFolder}/data.xlsx')
 
+data = data[data['Quality score'].notnull()]
+data = data[data['Quality score'] >= 2]
+
 prettyPrintDatapoint = {
+    'Q0' : 'OVERALL',
     'Q1' : 'Q1 (DT)',
     'Q2' : 'Q2 (Sim)',
     'Q3' : 'Q3 (AI)',
@@ -33,6 +37,8 @@ def chartQualityData(data, settings):
         #counter.append((variable, round(data[variable].std(), 3)))
     
     counter.reverse()
+    counter.append(('Q0', round(data[variables].stack().mean(), 3)))
+    
     plotData['Quality'] = counter
     
     numCharts = len(plotData.keys())
@@ -53,40 +59,29 @@ def chartQualityData(data, settings):
         
         values = [element[1] for element in counter]
         sumFrequencies = sum(values)
-        print(counter)
-        tab = '\t'
-        labels = [f'{(prettyPrintDatapoint[element[0]] if element[0] in prettyPrintDatapoint.keys() else element[0])} \u2014 {element[1]} ({round((element[1]/sumFrequencies)*100)}%)' for element in counter]
-        #Get the regular labels and values by: labels, values = zip(*counter)
+        labels = [f'{(prettyPrintDatapoint[element[0]] if element[0] in prettyPrintDatapoint.keys() else element[0])} \u2014 {format(element[1], ".3f")}' for element in counter]
+        #Get the regular labels and values by:
+        #labels, values = zip(*counter)
         
-        print(labels)
         
         #Prepare bar chart
         indexes = np.arange(len(labels))
         width = 0.75
-        axs[i].set_xlim([0, sum(values)*0.8])   #scales bars to 100% within one subplot
+        axs[i].set_xlim([0, 1])   #scales bars to 100% within one subplot
         
         #Create vertical bar chart
         plt.sca(axs[i])
-        plt.barh(indexes, values, width, color=color)
+        barlist = plt.barh(indexes, values, width, color=color)
+        barlist[-1].set_color('#faa250')
         plt.yticks(indexes, labels, rotation=0)
 
         """
         Title of the chart shown as a rotated Y axis label on the right side, inside of the plot area
         """
         title = category.capitalize()
-        #right label placement:
-        #axs[i].yaxis.set_label_position("right")
-        #plt.ylabel(title, rotation=270, fontsize=12, labelpad=-30)
-        #left label placement:
         axs[i].yaxis.set_label_position("left")
         plt.ylabel(title, rotation=90, fontsize=12, labelpad=7)
         
-        """
-        Left here in case we'd need to revert to anchored text from right-side inner Y label
-        """
-        #anchored_text = AnchoredText(title, loc= titleLabelPosition[category] if category in titleLabelPosition.keys() else "center right")
-        #anchored_text = AnchoredText(title, loc="center right")
-        #axs[i].add_artist(anchored_text)
         
         #Remove plot area borders
         axs[i].spines['right'].set_visible(False)
@@ -122,12 +117,8 @@ def chartQualityData(data, settings):
         figure.set_size_inches(8, 0.33*sum(rows))
         plt.gcf().tight_layout()
 
-    plt.savefig('{}/{}.pdf'.format(outputFolder, fileName))
-    #plt.show()  #Turn this off in final code or make it optional
-    
+    plt.savefig('{}/{}.pdf'.format(outputFolder, fileName))    
 
 chartQualityData(data, [
-    (['Q1', 'Q2', 'Q3', 'Q4'], '#ffdd47', 'quality'),
-    #(['Domain'], '#85d4ff', 'domain'),
-    ]
+    (['Q1', 'Q2', 'Q3', 'Q4'], '#ffdd47', 'quality')]
 )
