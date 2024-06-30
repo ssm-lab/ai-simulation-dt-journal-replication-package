@@ -10,5 +10,9 @@
 
 ## How to use
 
+### Install requirements
 - Install requirements by executing `pip install -r requirements.txt` from the root folder.
-- Run analysis by executing `python .\scripts\publication_trends.py` from the root folder.
+
+### Run analysis
+- For publication trends: execute `python .\scripts\publication_trends.py` from the root folder.
+- For the quality report: execute `python .\scripts\quality.py` from the root folder.
