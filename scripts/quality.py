@@ -1,8 +1,6 @@
 import numpy as np
 import os
 import pandas as pd
-import shutil
-import statistics
 from collections import Counter
 from matplotlib import pyplot as plt
 from matplotlib.offsetbox import AnchoredText

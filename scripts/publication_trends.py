@@ -1,8 +1,6 @@
 import numpy as np
 import os
 import pandas as pd
-import shutil
-import statistics
 from collections import Counter
 from matplotlib import pyplot as plt
 from matplotlib.offsetbox import AnchoredText
@@ -96,8 +94,6 @@ def chartData(data, settings):
         """
         for i, category in enumerate(plotData):
             counter = plotData[category]
-            
-            print(counter)
             
             values = [element[1] for element in counter]
             sumFrequencies = sum(values)
