@@ -1,13 +1,17 @@
+import numpy as np
 import os
+import pandas as pd
 import shutil
 import statistics
 from collections import Counter
-
-import numpy as np
-import pandas as pd
 from matplotlib import pyplot as plt
 from matplotlib.offsetbox import AnchoredText
 from matplotlib.ticker import MaxNLocator
+
+
+__author__ = "Istvan David"
+__copyright__ = "Copyright 2024, Sustainable Systems and Methods Lab (SSM)"
+__license__ = "GPL-3.0"
 
 inputFolder = './data'
 outputFolder = './output'
@@ -34,7 +38,6 @@ def chartQualityData(data, settings):
     
     for variable in variables:
         counter.append((variable, round(data[variable].mean(), 3)))
-        #counter.append((variable, round(data[variable].std(), 3)))
     
     counter.reverse()
     counter.append(('Q0', round(data[variables].stack().mean(), 3)))
@@ -60,9 +63,6 @@ def chartQualityData(data, settings):
         values = [element[1] for element in counter]
         sumFrequencies = sum(values)
         labels = [f'{(prettyPrintDatapoint[element[0]] if element[0] in prettyPrintDatapoint.keys() else element[0])} \u2014 {format(element[1], ".3f")}' for element in counter]
-        #Get the regular labels and values by:
-        #labels, values = zip(*counter)
-        
         
         #Prepare bar chart
         indexes = np.arange(len(labels))
@@ -72,7 +72,7 @@ def chartQualityData(data, settings):
         #Create vertical bar chart
         plt.sca(axs[i])
         barlist = plt.barh(indexes, values, width, color=color)
-        barlist[-1].set_color('#faa250')
+        barlist[-1].set_color('#12e000')
         plt.yticks(indexes, labels, rotation=0)
 
         """
@@ -120,5 +120,5 @@ def chartQualityData(data, settings):
     plt.savefig('{}/{}.pdf'.format(outputFolder, fileName))    
 
 chartQualityData(data, [
-    (['Q1', 'Q2', 'Q3', 'Q4'], '#ffdd47', 'quality')]
+    (['Q1', 'Q2', 'Q3', 'Q4'], '#8fff85', 'quality')]
 )

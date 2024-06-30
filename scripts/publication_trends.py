@@ -1,13 +1,17 @@
+import numpy as np
 import os
+import pandas as pd
 import shutil
 import statistics
 from collections import Counter
-
-import numpy as np
-import pandas as pd
 from matplotlib import pyplot as plt
 from matplotlib.offsetbox import AnchoredText
 from matplotlib.ticker import MaxNLocator
+
+
+__author__ = "Istvan David"
+__copyright__ = "Copyright 2024, Sustainable Systems and Methods Lab (SSM)"
+__license__ = "GPL-3.0"
 
 inputFolder = './data'
 outputFolder = './output'
@@ -41,17 +45,6 @@ prettyPrintCategory = {
     'Simulation model' : 'Sim'
 }
 
-
-#titleLabelPosition = {
-#    'background' : 'lower right',
-#    'role' :  'lower right',
-#}
-
-#titleLabelPosition2 = {
-#    'projectLength' : 'lower right'
-#}
-
-#def chartData(data, categories, color, fileName):
 def chartData(data, settings):
     for categories, color, fileName in settings:
         
@@ -64,8 +57,6 @@ def chartData(data, settings):
             
             #Counter object containing a dictionary of labels and frequencies
             counter = Counter([str(val).strip() for sublist in data[category].dropna().astype(str).str.split(',').tolist() for val in sublist])
-            
-            #print(counter)
             
             """
             Threshold management. Elements with a frequency below the threshold are placed into the 'Others' bin.
@@ -183,15 +174,6 @@ def chartData(data, settings):
 chartData(data, [
     (['Publication year', 'Publication type', 'Publisher'], '#85d4ff', 'publications'),
     (['Domain'], '#85d4ff', 'domain'),
-    (['Author countries cluster'], '#ffa1c0', 'geograpy'),  # #ffdd47
-    #(['DT style', 'Simulation model'], '#85d4ff', 'dt'),  # #ffdd47
+    (['Author countries cluster'], '#ffa1c0', 'geograpy'),
     ]
 )
-
-
-#def printNumericStats():
-#    print('Mean experience: {}.'.format(statistics.mean(data['experience'])))
-#    print('Std experience: {}.'.format(statistics.pstdev(data['experience'])))
-#    
-#    print('Mean collaborators: {}.'.format(statistics.mean(data['collaborators'])))
-#    print('Std collaborators: {}.'.format(statistics.pstdev(data['collaborators'])))
