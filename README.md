@@ -7,7 +7,7 @@ Insufficient data volume and quality are particularly pressing challenges in the
 
 ## Contents
 
-- `/data` - Data extraction sheet of 22 included studies (with fully extrated data) and 16 eventually excluded studies (with partially excluded data).
+- `/data` - Data extraction sheet of 22 included studies (with fully extrated data); and 16 eventually excluded studies (with quality data that justifies the exclusion).
 - `/scripts` - Analysis scripts for the automated analysis of data.
 - `/output` - Results of the analyses as used in the article.
 
