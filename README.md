@@ -2,6 +2,7 @@
 
 ### for the article _AI Simulation by Digital Twins: Systematic Survey, Reference Framework, and Mapping to a Standardized Architecture_.
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15602825.svg)](https://doi.org/10.5281/zenodo.15602825)
 
 ## About
 Insufficient data volume and quality are particularly pressing challenges in the adoption of modern subsymbolic AI. To alleviate these challenges, AI simulation uses virtual training environments in which AI agents can be safely and efficiently developed with simulated, synthetic data. Digital twins open new avenues in AI simulation, as these high-fidelity virtual replicas of physical systems are equipped with state-of-the-art simulators and the ability to further interact with the physical system for additional data collection. In this article, we report on our systematic survey of digital twin-enabled AI simulation. By analyzing 22 primary studies, we identify technological trends and derive a reference framework to situate digital twins and AI components. Based on our findings, we derive a reference framework and provide architectural guidelines by mapping it onto the ISO 23247 reference architecture for digital twins. Finally, we identify challenges and research opportunities for prospective researchers.
